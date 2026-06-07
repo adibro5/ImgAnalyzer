@@ -25,7 +25,7 @@ public class RestControllerBase64 {
     @PostMapping("/decode")
     public DTOBase64 decodeImageIntoBase64String(@RequestParam("files") MultipartFile[] file) throws Exception {
         // 1. Check if file is empty
-        DTOBase64 dtoBase64 = new DTOBase64();
+//        DTOBase64 dtoBase64 = new DTOBase64();
 //        dtoBase64.setBase64Value();
 
         return bServe.convertImageToBase64(file);
@@ -35,17 +35,7 @@ public class RestControllerBase64 {
     @PostMapping("/encode")
     public String encodeBase64StringIntoImage(@RequestBody Map<String, String> fileString) throws Exception {
 
-        Base64Encoder encoder = new Base64Encoder();
-        String base64ImageString = fileString.get("base64Value");
-
-        // Example with a nested folder path that might not exist yet
-        String outputImagePath = fileString.get("destinationFolder");
-//        String cleanBase64 = ;
-
-//        encoder.encode(encoder.cleanBase64(base64ImageString), outputImagePath);
-        bServe.convertBase64StringToImage(base64ImageString, outputImagePath);
-        System.out.println("Image saved successfully to: " + outputImagePath);
-        encoder = null;
+        bServe.createImageFromBase64String(fileString);
         return "success";
 
     }

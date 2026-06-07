@@ -13,6 +13,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.Map;
 import java.util.Objects;
 
 @Service
@@ -96,10 +97,22 @@ public class Base64Services {
         dtoBase64.setBase64Value(decoder.decode(new File("Images\\" + file[0].getOriginalFilename())));
     }
 
-    public void convertBase64StringToImage(String base64String, String outputPath) throws Exception {
+    private void convertBase64StringToImage(String base64String, String outputPath) throws Exception {
         encoder.encode(encoder.cleanBase64(base64String), outputPath);
     }
 
+
+    public void createImageFromBase64String(Map<String, String> fileString) throws Exception {
+
+        String base64ImageString = fileString.get("base64Value");
+
+        // Example with a nested folder path that might not exist yet
+        String outputImagePath = fileString.get("destinationFolder");
+
+        convertBase64StringToImage(base64ImageString, outputImagePath);
+        System.out.println("Image saved successfully to: " + outputImagePath);
+        encoder = null;
+    }
 
 
 }
