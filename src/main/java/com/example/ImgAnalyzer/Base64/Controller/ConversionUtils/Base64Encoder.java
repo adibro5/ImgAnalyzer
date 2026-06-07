@@ -39,7 +39,7 @@ public final class Base64Encoder extends Base64Converter{
         throw new RuntimeException("You cannot decode using this context.");
     }
 
-    public static String cleanBase64(String input) {
+    public String cleanBase64(String input) {
         if (input == null) {
             return "";
         }

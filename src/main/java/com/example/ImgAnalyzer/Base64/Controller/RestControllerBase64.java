@@ -42,8 +42,8 @@ public class RestControllerBase64 {
         String outputImagePath = fileString.get("destinationFolder");
 //        String cleanBase64 = ;
 
-        encoder.encode(encoder.cleanBase64(base64ImageString), outputImagePath);
-
+//        encoder.encode(encoder.cleanBase64(base64ImageString), outputImagePath);
+        bServe.convertBase64StringToImage(base64ImageString, outputImagePath);
         System.out.println("Image saved successfully to: " + outputImagePath);
         encoder = null;
         return "success";

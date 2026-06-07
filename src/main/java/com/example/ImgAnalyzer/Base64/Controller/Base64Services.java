@@ -1,6 +1,7 @@
 package com.example.ImgAnalyzer.Base64.Controller;
 
 import com.example.ImgAnalyzer.Base64.Controller.ConversionUtils.Base64Decoder;
+import com.example.ImgAnalyzer.Base64.Controller.ConversionUtils.Base64Encoder;
 import com.example.ImgAnalyzer.Base64.Controller.DTO.DTOBase64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,11 +20,14 @@ public class Base64Services {
 
     DTOBase64 dtoBase64;
     Base64Decoder decoder;
+    Base64Encoder encoder;
+
 
     @Autowired
-    Base64Services(Base64Decoder decoder, DTOBase64 dtoBase64) {
+    Base64Services(Base64Decoder decoder, DTOBase64 dtoBase64, Base64Encoder encoder) {
         this.decoder = decoder;
         this.dtoBase64 = dtoBase64;
+        this.encoder = encoder;
     }
 
     public DTOBase64 convertImageToBase64(MultipartFile ...file) throws Exception {
@@ -90,6 +94,10 @@ public class Base64Services {
 
     private void actualDecode(MultipartFile ...file) throws Exception {
         dtoBase64.setBase64Value(decoder.decode(new File("Images\\" + file[0].getOriginalFilename())));
+    }
+
+    public void convertBase64StringToImage(String base64String, String outputPath) throws Exception {
+        encoder.encode(encoder.cleanBase64(base64String), outputPath);
     }
 
 
