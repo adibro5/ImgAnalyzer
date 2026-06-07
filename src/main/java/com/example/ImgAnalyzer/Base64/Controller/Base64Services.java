@@ -89,7 +89,7 @@ public class Base64Services {
         Files.copy(file[0].getInputStream(), dirSetup(file), StandardCopyOption.REPLACE_EXISTING);
     }
 
-    private void deleteObjects(Base64Decoder decoder) {
+    private void deleteObjects(Object decoder) {
         decoder = null;
     }
 
@@ -110,8 +110,11 @@ public class Base64Services {
         String outputImagePath = fileString.get("destinationFolder");
 
         convertBase64StringToImage(base64ImageString, outputImagePath);
+
         System.out.println("Image saved successfully to: " + outputImagePath);
-        encoder = null;
+
+        deleteObjects(encoder);
+//        encoder = null;
     }
 
 
