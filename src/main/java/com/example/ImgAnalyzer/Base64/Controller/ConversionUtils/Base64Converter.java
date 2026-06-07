@@ -9,7 +9,7 @@ public sealed abstract class Base64Converter permits Base64Encoder, Base64Decode
 
 //    public abstract  T convert(U u);
 
-    public abstract void encode(String str, String outputImagePath) throws Exception;
+    public abstract void encode(String ...str) throws Exception;
 
-    public abstract String decode(File file) throws Exception;
+    public abstract String decode(File ...file) throws Exception;
 }

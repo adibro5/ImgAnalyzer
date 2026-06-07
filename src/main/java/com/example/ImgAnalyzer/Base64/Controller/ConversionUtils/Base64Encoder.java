@@ -10,14 +10,15 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Base64;
 
+@Bean
 public final class Base64Encoder extends Base64Converter{
 
     @Override
-    public void encode(String file, String outputImagePath) throws Exception {
-        byte[] imageBytes = Base64.getDecoder().decode(file);
+    public void encode(String ...fileString) throws Exception {
+        byte[] imageBytes = Base64.getDecoder().decode(fileString[0]);
 
         // 1. Get the path object for the file
-        Path path = Paths.get(outputImagePath);
+        Path path = Paths.get(fileString[1]);
 
         // 2. Extract the parent directory path
         Path parentDirectory = path.getParent();
@@ -28,13 +29,13 @@ public final class Base64Encoder extends Base64Converter{
         }
 
         // 4. Write bytes to the target file destination
-        try (OutputStream outputStream = new FileOutputStream(outputImagePath)) {
+        try (OutputStream outputStream = new FileOutputStream(fileString[1])) {
             outputStream.write(imageBytes);
         }
     }
 
     @Override
-    public String decode(File file) throws Exception {
+    public String decode(File ...file) throws Exception {
         throw new RuntimeException("You cannot decode using this context.");
     }
 
