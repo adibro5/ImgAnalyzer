@@ -1,4 +1,4 @@
-package com.example.ImgAnalyzer.Base64;
+package com.example.ImgAnalyzer.Base64.Controller.ConversionUtils;
 
 import org.springframework.stereotype.Component;
 
@@ -10,7 +10,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Base64;
 
-@Bean
+@Component
 public final class Base64Encoder extends Base64Converter{
 
     @Override

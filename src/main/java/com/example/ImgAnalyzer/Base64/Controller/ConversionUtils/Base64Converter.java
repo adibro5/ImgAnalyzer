@@ -1,6 +1,4 @@
-package com.example.ImgAnalyzer.Base64;
-
-import org.springframework.stereotype.Component;
+package com.example.ImgAnalyzer.Base64.Controller.ConversionUtils;
 
 import java.io.File;
 
